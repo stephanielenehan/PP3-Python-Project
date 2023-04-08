@@ -30,13 +30,32 @@ def get_sales_data():
     print("Example: 10,20,30,40,50,60\n") # \n to put an extra line of space under the example data
 
     data_str = input("Enter your data here:")
-    print(f"The data you provided is {data_str}")
+    #print(f"The data you provided is {data_str}")
+
+    sales_data = data_str.split(",")
+    validate_data(sales_data)
+
+#create a function to validate the data before allowing the rest of the program to continue
+#If data is corrupted, it will gove a useful message to our user explaining what's wrong
+
+def validate_data(values):
+    """
+    Inside the try, converts all string values into integers.
+    Raises ValueError if strings connot be converted into int,
+    or if there arn't exactly 6 values.
+    """
+    print(values)
+
+    try:
+        if len(values) != 6:
+            raise ValueError(
+                f"Exactly 6 values required, you provided {len(values)}"
+            )
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
+    
 
 get_sales_data()
-
-
-
-
 # Your code goes here.
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
